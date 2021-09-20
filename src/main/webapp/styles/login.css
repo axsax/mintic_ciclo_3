@@ -1,0 +1,87 @@
+@charset "ISO-8859-1";
+
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url('../assets/City.jpg');
+	/*background: #2f3542;
+    */
+}
+
+.form-register {
+	width: 400px;
+	background: #27292c;
+	padding: 30px;
+	margin: auto;
+	margin-top: 100px;
+	border-radius: 4px;
+	font-family: 'Times New Roman';
+	color: rgb(255, 255, 255);
+	box-shadow: 7px 13px 37px #5190e2;
+	text-align: center;
+}
+
+.form-register h4 {
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+.form-register .botons {
+	width: 100;
+	background: aqua;
+	border: none;
+	padding: 12px 80px;
+	margin: 12px 0;
+	font-size: 14px;
+	font-family: 'Times New Roman';
+}
+
+.botons {
+	border-radius: 8px;
+}
+
+.controls {
+	width: 100%;
+	background: #051320;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	border: 1px solid #1f53c5;
+	font-family: 'Times New Roman';
+	font-size: 18px;
+	color: whitesmoke;
+	margin-left: -10px;
+}
+
+p {
+	line-height: 1.4;
+}
+
+a {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+}
+
+a:link {
+	color: #627475;
+}
+
+a:visited {
+	color: #437A16;
+}
+
+a:focus {
+	border-bottom: 1px solid;
+	background: #849974;
+}
+
+a:hover {
+	border-bottom: 1px solid;
+	background: #68db6e;
+}
+
+a:active {
+	background: #265301;
+	color: #193107;
+}
