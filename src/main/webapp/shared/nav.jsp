@@ -1,69 +1,29 @@
-<div class="div-nav">
-	<header>
-		<nav class="navigation-header">
-			<ul class="ul-nav">
-				<div class="div-li-left">
-					<li><img alt="" src="../assets/shop.png"></li>
-					<li class="li-principal"><a class="a-login"><strong>Tienda
-								Generica</strong></a></li>
-				</div>
-				<div class="div-li-select">
-					<li class="nav-li-select">
-						<div class="dropdown">
-							<button class="dropbtn">Usuarios</button>
-							<div class="dropdown-content">
-								<a href="home.jsp?page=users&action=list">Listar</a> <a href="home.jsp?page=users&action=create">Crear</a>
-							</div>
-						</div> 	
-					</li>
-
-					<li class="nav-li-select">
-						<div class="dropdown">
-							<button class="dropbtn">Clientes</button>
-							<div class="dropdown-content">
-								<a href="#">Consultar</a> <a href="#">Crear</a> <a href="#">Actualizar</a>
-							</div>
-						</div>
-					</li>
-
-					<li class="nav-li-select">
-						<div class="dropdown">
-							<button class="dropbtn">Proveedores</button>
-							<div class="dropdown-content">
-								<a href="#">Consultar</a> <a href="#">Crear</a> <a href="#">Actualizar</a>
-							</div>
-						</div>
-					</li>
-
-					<li class="nav-li-select">
-						<div class="dropdown">
-							<button class="dropbtn">Productos</button>
-							<div class="dropdown-content">
-								<a href="#">Consultar</a> <a href="#">Crear</a> <a href="#">Actualizar</a>
-							</div>
-						</div>
-					</li>
-
-					<li class="nav-li-select">
-						<div class="dropdown">
-							<button class="dropbtn">Ventas</button>
-							<div class="dropdown-content">
-								<a href="#">Consultar</a> <a href="#">Crear</a> <a href="#">Actualizar</a>
-							</div>
-						</div>
-					</li>
-
-
-					<li class="nav-li-select">
-						<div class="dropdown">
-							<button class="dropbtn">Reportes</button>
-							<div class="dropdown-content">
-								<a href="#">Consultar</a> <a href="#">Crear</a> <a href="#">Actualizar</a>
-							</div>
-						</div>
-					</li>
-				</div>
-			</ul>
-		</nav>
-	</header>
-</div>
+<!-- Image and text -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="home.jsp?page=blank"> <img src="../assets/shop.png"
+		width="30" height="30" class="d-inline-block align-top" alt="">
+		Tienda Generica
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+			<li class="nav-item active"><a class="nav-link" href="#">Home
+					<span class="sr-only">(current)</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
+				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"> Usuarios </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="home.jsp?page=users&action=list">Listar</a> <a
+						class="dropdown-item" href="home.jsp?page=users&action=create">Crear</a> 
+				</div></li>
+		</ul>
+	</div>
+</nav>

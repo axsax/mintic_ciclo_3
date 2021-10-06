@@ -1,12 +1,16 @@
 package Controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
+
+import com.google.gson.Gson;
 
 import Modelo.UserDTO;
 import Modelo.UserOP_DAO;
@@ -42,8 +46,10 @@ public class User extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		PrintWriter salida = response.getWriter();
+		Gson datos = new Gson();
 		// TODO Auto-generated method stub
-		if (request.getParameter("createUser") != null) {
+		if (request.getParameter("method").equals("createUser")) {
 			String requestIdentification = request.getParameter("identification");
 			String requestUser = request.getParameter("user");
 			String requestname = request.getParameter("name");
@@ -58,10 +64,10 @@ public class User extends HttpServlet {
 			user.setPassword(requestPassword);
 			user.setEmail(requestEmail);
 
-			String salida = (op.crear(user)) ? "exitoso" : "fallido";
-
-			response.sendRedirect("principal/home.jsp?page=users&action=create&state=" + salida);
-		} else if (request.getParameter("editUser") != null) {
+			String sal = (op.crear(user)) ? "exitoso" : "fallido";
+			salida.println(datos.toJson(sal));
+			//response.sendRedirect("principal/home.jsp?page=users&action=create&state=" + sal);
+		} else if (request.getParameter("method").equals("editUser")) {
 
 			String requestIdentification = request.getParameter("identification");
 			String requestUser = request.getParameter("user");
@@ -74,17 +80,25 @@ public class User extends HttpServlet {
 			user.setUser(requestUser);
 			user.setName(requestname);
 			user.setEmail(requestEmail);
-			String salida = (op.actualizar(user)) ? "exitoso" : "fallido";
-
-			response.sendRedirect("principal/home.jsp?page=users&action=list&state=" + salida);
-		} else if (request.getParameter("deleteUser") != null) {
+			String sal = (op.actualizar(user)) ? "exitoso" : "fallido";
+			salida.println(datos.toJson(sal));
+			// response.sendRedirect("principal/home.jsp?page=users&action=list&state=" +
+			// sal);
+		} else if (request.getParameter("method").equals("deleteUser")) {
 			String requestIdentification = request.getParameter("identification");
 			UserOP_DAO op = new UserOP_DAO();
 			UserDTO user = new UserDTO();
 			user.setIdentification(Long.parseLong(requestIdentification));
-			String salida = (op.eliminar(user)) ? "exitoso" : "fallido";
-
-			response.sendRedirect("principal/home.jsp?page=users&action=list&state=" + salida);
+			String sal = (op.eliminar(user)) ? "exitoso" : "fallido";
+			salida.println(datos.toJson(sal));
+			// response.sendRedirect("principal/home.jsp?page=users&action=list&state=" +
+			// sal);
+		} else if (request.getParameter("method").equals("getUser")) {
+			String requestIdentification = request.getParameter("identification");
+			UserOP_DAO op = new UserOP_DAO();
+			UserDTO user = new UserDTO();
+			user = op.consultar(requestIdentification);
+			salida.println(datos.toJson(user));
 		}
 	}
 

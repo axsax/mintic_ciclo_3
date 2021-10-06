@@ -20,10 +20,7 @@
 			</p>
 			<input class="botons" type="submit" name="login"
 				value="Iniciar Sesión">
-
 		</section>
-
 	</form>
-	<jsp:include page="shared/footer.jsp" />
 </body>
 </html>

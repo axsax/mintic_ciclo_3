@@ -16,18 +16,15 @@
 						<li><img alt="" src="assets/shop.png"></li>
 						<li class="li-principal"><a class="a-login"><strong>Tienda
 									Generica</strong></a></li>
-					<div class="div-login">
-						<li class="li-login"><a class="a-login" href="login.jsp">Iniciar
-								Sesión </a></li>
-					</div>
-
+						<div class="div-login">
+							<li class="li-login"><a class="a-login" href="login.jsp">Iniciar
+									Sesión </a></li>
+						</div>
 				</ul>
 			</nav>
 		</header>
 	</div>
 	<div></div>
-	
 
-	<jsp:include page="shared/footer.jsp" />
 </body>
 </html>
