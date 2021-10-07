@@ -14,6 +14,10 @@ public class CustomerDTO {
 		this.email = c.email;
 		this.name = c.name;
 	}
+	
+	public CustomerDTO() {
+		
+	}
 
 	public String getAddress() {
 		return address;

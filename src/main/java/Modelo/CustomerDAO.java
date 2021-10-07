@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public interface CustomerDAO {
     
+	Boolean login(CustomerDTO c);
+
 	Boolean crear(CustomerDTO c);
 
 	Boolean eliminar(CustomerDTO c);

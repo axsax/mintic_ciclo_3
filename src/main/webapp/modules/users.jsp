@@ -142,8 +142,7 @@ if (p.equals("list")) {
 		ArrayList<UserDTO> arrUsers = new ArrayList<>();
 		arrUsers = listUser.listar();
 	%>
-
-
+	
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
