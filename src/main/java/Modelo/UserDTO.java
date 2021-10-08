@@ -6,6 +6,7 @@ public class UserDTO {
 	protected long identification;
 	protected String email;
 	protected String name;
+	protected String rol;
 
 	public UserDTO() {
 		
@@ -16,6 +17,7 @@ public class UserDTO {
 		this.identification = u.identification;
 		this.email = u.email;
 		this.name = u.name;
+		this.rol = u.rol;
 	}
 
 	public String getPassword() {
@@ -24,6 +26,14 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 	public String getUser() {

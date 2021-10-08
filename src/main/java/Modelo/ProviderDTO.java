@@ -14,6 +14,9 @@ public class ProviderDTO {
 		this.name = p.name;
 		this.phone = p.phone;
 	}
+	public ProviderDTO() {
+		
+	}
 
 	public long getNit() {
 		return nit;

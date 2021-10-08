@@ -3,7 +3,7 @@ package Modelo;
 import java.util.ArrayList;
 
 public interface UserDAO {
-	Boolean login(UserDTO c);
+	String login(UserDTO c);
 
 	Boolean crear(UserDTO c);
 

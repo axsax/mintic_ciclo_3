@@ -18,6 +18,9 @@ public class ProductDTO {
 		this.sale_price = pro.sale_price;
 	}
 
+	public ProductDTO() {
+		
+	}
 	public long getCode() {
 		return code;
 	}

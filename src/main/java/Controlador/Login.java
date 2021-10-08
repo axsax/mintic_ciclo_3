@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import Modelo.UserDTO;
 import Modelo.UserOP_DAO;
@@ -38,7 +40,10 @@ public class Login extends HttpServlet {
 			UserDTO user = new UserDTO();
 			user.setUser(requestName);
 			user.setPassword(requestPassword);
-			if (op.login(user)) {
+			String rol=op.login(user);
+			if (!rol.equals("")) {
+				HttpSession session = request.getSession();
+				session.setAttribute("rol", rol);
 				response.sendRedirect("principal/home.jsp?page=blank");
 			} else {
 				response.sendRedirect("login.jsp");

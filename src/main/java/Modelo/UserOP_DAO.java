@@ -11,17 +11,17 @@ import Conexion.Conexion;
 /*SE UTILIZA PARA LA TABLA DE BD USUARIOS*/
 public class UserOP_DAO implements UserDAO {
 
-	private final String login = "SELECT nombre_usuario FROM usuarios ";
-	private final String select = "SELECT cedula_usuario, email_usuario, nombre_usuario,usuario FROM usuarios ";
+	private final String login = "SELECT nombre_usuario,rol FROM usuarios ";
+	private final String select = "SELECT cedula_usuario, email_usuario, nombre_usuario,usuario,rol FROM usuarios ";
 	private Connection con = null;
 	private Statement stm = null;
 	private ResultSet rs = null;
 
 	@Override
 	public Boolean crear(UserDTO u) {
-		String sql = "INSERT INTO usuarios (cedula_usuario,email_usuario,nombre_usuario,password,usuario) values ('"
+		String sql = "INSERT INTO usuarios (cedula_usuario,email_usuario,nombre_usuario,password,usuario,rol) values ('"
 				+ u.getIdentification() + "','" + u.getEmail() + "','" + u.getName() + "','" + u.getPassword() + "','"
-				+ u.getName() + "');";
+				+ u.getName()+ "','" + u.getRol() + "');";
 		try {
 			this.con = Conexion.conectar();
 			this.stm = this.con.createStatement();
@@ -110,16 +110,18 @@ public class UserOP_DAO implements UserDAO {
 	}
 
 	@Override
-	public Boolean login(UserDTO u) {
+	public String login(UserDTO u) {
 		String sql = this.login + "where usuario='" + u.getUser() + "' and password= '" + u.getPassword()
 				+ "' limit 1;";
 		String name = "";
+		String rol = "";
 		try {
 			this.con = Conexion.conectar();
 			this.stm = this.con.createStatement();
 			this.rs = this.stm.executeQuery(sql);
 			while (this.rs.next()) {
 				name = this.rs.getString(1);
+				rol = this.rs.getString(2);
 			}
 			this.stm.close();
 			this.rs.close();
@@ -128,7 +130,7 @@ public class UserOP_DAO implements UserDAO {
 			System.out.println(e);
 		}
 
-		return (!name.equals("")) ? true : false;
+		return rol;
 	}
 
 	private UserDTO getCompleteUser() {
@@ -138,6 +140,7 @@ public class UserOP_DAO implements UserDAO {
 			u.setEmail(this.rs.getString(2));
 			u.setName(this.rs.getString(3));
 			u.setUser(this.rs.getString(4));
+			u.setRol(this.rs.getString(5));
 
 		} catch (SQLException e) {
 			System.out.println(e);

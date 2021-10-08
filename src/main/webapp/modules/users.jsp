@@ -3,6 +3,7 @@
 <%@page import="Modelo.UserDTO"%>
 <%@page import="Modelo.UserOP_DAO"%>
 <%
+String rol = (String) session.getAttribute("rol");
 String p = request.getParameter("action");
 String titulo = "";
 if (p.equals("list")) {
@@ -142,7 +143,7 @@ if (p.equals("list")) {
 		ArrayList<UserDTO> arrUsers = new ArrayList<>();
 		arrUsers = listUser.listar();
 	%>
-	
+
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
@@ -179,7 +180,7 @@ if (p.equals("list")) {
 		</tbody>
 	</table>
 	<%
-	} else if (p.equals("create")) {
+	} else if (p.equals("create") && rol.equals("su")) {
 	%>
 	<form>
 		<div class="form-group">
@@ -205,7 +206,8 @@ if (p.equals("list")) {
 				placeholder="">
 		</div>
 		<div class="modal-footer">
-			<button  onclick="createUser()" type="button" class="btn btn-primary" id="crearBoton" >Crear usuario</button>
+			<button onclick="createUser()" type="button" class="btn btn-primary"
+				id="crearBoton">Crear usuario</button>
 		</div>
 	</form>
 	<%
