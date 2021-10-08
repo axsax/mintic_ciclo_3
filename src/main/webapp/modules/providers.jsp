@@ -143,7 +143,7 @@ if (p.equals("list")) {
 		arrProviders = listProviders.listar();
 	%>
 
-	<table class="table">
+	<table class="table table-hover">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">#</th>

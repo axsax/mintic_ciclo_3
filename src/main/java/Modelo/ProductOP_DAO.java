@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
@@ -51,7 +52,7 @@ public class ProductOP_DAO implements ProductDAO {
 			System.out.println(e);
 		}
 		return arrProductDTO;
-		
+
 	}
 
 	@Override
@@ -73,6 +74,30 @@ public class ProductOP_DAO implements ProductDAO {
 			System.out.println(e);
 		}
 		return u;
+	}
+
+	@Override
+	public Boolean creaMasivo(ArrayList<ProductDTO> c) {
+		Boolean paso = true;
+		for (int i = 0; i < c.size(); i++) {
+			String sql = "INSERT INTO productos (codigo_producto, iva_compra, nit_proveedor,nombre_producto,precio_compra, precio_venta) values ('"
+					+ c.get(i).getCode() + "','" + c.get(i).getIva() + "','" + c.get(i).getNit() + "','"
+					+ c.get(i).getProduct_name() + "','" + c.get(i).getPurchase_price() + "','"
+					+ c.get(i).getSale_price() + "');";
+			try {
+				this.con = Conexion.conectar();
+				this.stm = this.con.createStatement();
+				this.stm.execute(sql);
+				this.stm.close();
+				this.con.close();
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, e);
+				paso = false;
+			}
+		}
+		
+		return paso;
+
 	}
 
 }

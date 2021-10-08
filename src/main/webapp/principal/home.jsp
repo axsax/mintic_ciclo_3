@@ -13,8 +13,18 @@
 	href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<style type="text/css">
+table, thead, tr, th {
+	text-align: center;
+}
+</style>
 </head>
 <body>
+	<%
+	String rol = "";
+	rol = (String) session.getAttribute("rol");
+	if (rol != null) {
+	%>
 	<jsp:include page="../shared/nav.jsp" />
 
 
@@ -40,6 +50,13 @@
 
 	<jsp:include page="<%=pagePath%>"></jsp:include>
 	<!-- FIN MODULOS  -->
+	<%
+	} else {
+	%>
+	<h1>UD NO TIENE ACCESO A ESTA PAGINA</h1>
 
+	<%
+	}
+	%>
 </body>
 </html>

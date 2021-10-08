@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public interface ProductDAO {
 	Boolean crear(ProductDTO c);
-
+	
+	Boolean creaMasivo(ArrayList<ProductDTO> c);
+	
 	Boolean eliminar(ProductDTO c);
 
 	Boolean actualizar(ProductDTO c);

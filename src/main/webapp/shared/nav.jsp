@@ -20,7 +20,8 @@
 					<a class="dropdown-item" href="home.jsp?page=users&action=list">Listar</a>
 					<%
 					String rol = (String) session.getAttribute("rol");
-					if (rol.equals("su")) {
+					
+					if (rol!= null && rol.equals("su")) {
 					%>
 					<a class="dropdown-item" href="home.jsp?page=users&action=create">Crear</a>
 					<%
@@ -57,6 +58,25 @@
 					<a class="dropdown-item" href="home.jsp?page=products&action=list">Listar</a>
 					<a class="dropdown-item"
 						href="home.jsp?page=products&action=create">Crear</a>
+				</div></li>
+				
+					<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
+				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"> Ventas </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="">Listar</a>
+					<a class="dropdown-item"
+						href="">Crear</a>
+				</div></li>
+					<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
+				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"> Reportes </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="">Listar</a>
+					<a class="dropdown-item"
+						href="">Crear</a>
 				</div></li>
 		</ul>
 	</div>
