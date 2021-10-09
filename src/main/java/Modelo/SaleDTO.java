@@ -17,6 +17,9 @@ public class SaleDTO {
 		this.total_sale = s.total_sale;
 		this.sale_value = s.sale_value;
 	}
+	public SaleDTO() {
+		
+	}
 
 	public long getCode() {
 		return code;

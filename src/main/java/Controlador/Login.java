@@ -1,6 +1,8 @@
 package Controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
+
+import com.google.gson.Gson;
 
 import Modelo.UserDTO;
 import Modelo.UserOP_DAO;
@@ -40,7 +44,7 @@ public class Login extends HttpServlet {
 			UserDTO user = new UserDTO();
 			user.setUser(requestName);
 			user.setPassword(requestPassword);
-			String rol=op.login(user);
+			String rol = op.login(user);
 			if (!rol.equals("")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("rol", rol);
@@ -48,6 +52,12 @@ public class Login extends HttpServlet {
 			} else {
 				response.sendRedirect("login.jsp");
 			}
+		} else if (request.getParameter("method").equals("logout")) {
+			PrintWriter salida = response.getWriter();
+			Gson datos = new Gson();
+			HttpSession session = request.getSession();
+			session.removeAttribute("rol");
+			salida.println(datos.toJson("pafuera"));
 		}
 
 	}

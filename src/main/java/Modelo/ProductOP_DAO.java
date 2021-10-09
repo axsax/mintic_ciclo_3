@@ -57,8 +57,25 @@ public class ProductOP_DAO implements ProductDAO {
 
 	@Override
 	public ProductDTO consultar(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		ProductDTO producto = new ProductDTO();
+
+		String sql = select + " where codigo_producto='" + id + "';";
+
+		try {
+			this.con = Conexion.conectar();
+			this.stm = this.con.createStatement();
+			this.rs = this.stm.executeQuery(sql);
+			while (this.rs.next()) {
+				producto = this.getCompleteProduct();
+			}
+			this.stm.close();
+			this.rs.close();
+			this.con.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+		return producto;
 	}
 
 	private ProductDTO getCompleteProduct() {
@@ -91,11 +108,10 @@ public class ProductOP_DAO implements ProductDAO {
 				this.stm.close();
 				this.con.close();
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, e);
 				paso = false;
 			}
 		}
-		
+
 		return paso;
 
 	}

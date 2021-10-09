@@ -27,83 +27,49 @@ if (p.equals("list")) {
 
 	}
 
-	function uploadFile() {
-		var parametros = {
-			"method" : "createProducts",
-		};
-		let formData = new FormData();
-		formData.append("file", inputFile.files[0]);
-		form.submit();
-		form.submit(function() {
-			$.ajax({
-				type : 'Post',
-				url : '../Product',
-				body : formData,
-				data : parametros,
-				enctype : 'multipart/form-data',
-			});
-		});
-
-	}
-
-	function uploadFile2() {
-		var parametros = {
-			"method" : "createProducts",
-			"file" : inputFile.files[0]
-		};
-		$.ajax({
-			type : "POST",
-			url : "../Product",
-			body : formData,
-			data : parametros,
-			enctype : 'multipart/form-data',
-			success : function(data) {
-				console.log("entra");
-			},
-			error : function(jqXHR, exception) {
-				var msg = '';
-				if (jqXHR.status === 0) {
-					msg = 'Not connect.\n Verify Network.';
-				} else if (jqXHR.status == 404) {
-					msg = 'Requested page not found. [404]';
-				} else if (jqXHR.status == 500) {
-					msg = 'Internal Server Error [500].';
-				} else if (exception === 'parsererror') {
-					msg = 'Requested JSON parse failed.';
-				} else if (exception === 'timeout') {
-					msg = 'Time out error.';
-				} else if (exception === 'abort') {
-					msg = 'Ajax request aborted.';
-				} else {
-					msg = 'Uncaught Error.\n' + jqXHR.responseText;
-				}
-				alert(msg);
-			}
-		});
-	}
-
 	$(function() {
-		$("#formuploadajax").on(
-				"submit",
-				function(e) {
-					e.preventDefault();
-					var f = $(this);
-					var formData = new FormData(document
-							.getElementById("formuploadajax"));
-					formData.append("method", "createProducts");
-					//formData.append(f.attr("name"), $(this)[0].files[0]);
-					$.ajax({
-						url : "../Product",
-						type : "post",
-						dataType : "html",
-						data : formData,
-						cache : false,
-						contentType : false,
-						processData : false
-					}).done(function(res) {
-						$("#mensaje").html("Respuesta: " + res);
-					});
-				});
+		$("#formuploadajax")
+				.on(
+						"submit",
+						function(e) {
+							e.preventDefault();
+							var f = $(this);
+							var texto;
+							var time = 1000;
+							var formData = new FormData(document
+									.getElementById("formuploadajax"));
+							formData.append("method", "createProducts");
+							//formData.append(f.attr("name"), $(this)[0].files[0]);
+							$
+									.ajax({
+										url : "../Product",
+										type : "post",
+										dataType : "html",
+										data : formData,
+										cache : false,
+										contentType : false,
+										processData : false
+									})
+									.done(
+											function(res) {
+
+												if (res == 'success') {
+													texto = "Productos cargados exitosamente";
+													time = 1500;
+												} else {
+													res = 'error';
+													texto = "Error subiendo productos, por favor revise el CSV";
+													time = 3000;
+												}
+												Swal.fire({
+													position : 'top-end',
+													icon : res,
+													title : texto,
+													showConfirmButton : false,
+													timer : time
+												})
+											});
+						});
 	});
 </script>
 
@@ -150,10 +116,9 @@ if (p.equals("list")) {
 	<%
 	} else if (p.equals("create")) {
 	%>
-	<div id="mensaje"></div>
 
 	<form enctype="multipart/form-data" id="formuploadajax" method="post"
-		class="form-inline justify-content-center mb-2">
+		class="form-inline justify-content-center mb-2" onsubmit="validate()">
 
 		<div class="form-group mb-2">
 			<label for="inputEmail3" class="col-form-label">Escoja el
@@ -163,7 +128,8 @@ if (p.equals("list")) {
 			<input type="file" accept=".csv" name="file"
 				class="form-control-file" id="inputFile">
 		</div>
-		<input type="submit" value="Subir archivos" />
+		<button type="submit" class="btn btn-primary btn-lg btn-block">Subir
+			archivos</button>
 
 	</form>
 

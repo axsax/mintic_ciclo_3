@@ -1,13 +1,28 @@
 package Modelo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SaleOP_DAO implements SaleDAO{
+import Conexion.Conexion;
+
+public class SaleOP_DAO implements SaleDAO {
 
 	@Override
-	public Boolean crear(SaleDTO c) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long crear(SaleDTO c) {
+		String sql = "INSERT INTO clientes (cedula_cliente, email_cliente, nombre_cliente,telefono_cliente,direccion_cliente) values ('"
+				+ c.getIdentification() + "','" + c.getEmail() + "','" + c.getName() + "','" + c.getPhone_number()
+				+ "','" + c.getAddress() + "');";
+		try {
+			this.con = Conexion.conectar();
+			this.stm = this.con.createStatement();
+			this.stm.execute(sql);
+			this.stm.close();
+			this.con.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -33,6 +48,5 @@ public class SaleOP_DAO implements SaleDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }
