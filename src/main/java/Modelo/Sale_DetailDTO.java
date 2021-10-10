@@ -19,6 +19,10 @@ public class Sale_DetailDTO {
 		this.sale_value = sd.sale_value;
 		this.iva_value = sd.iva_value;
 	}
+	
+	public Sale_DetailDTO() {
+		
+	}
 
 	public long getSale_detail_code() {
 		return sale_detail_code;

@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import org.apache.jasper.tagplugins.jstl.core.If;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import Modelo.CustomerDTO;
 import Modelo.CustomerOP_DAO;
@@ -99,8 +100,9 @@ public class Product extends HttpServlet {
 			} else {
 				sal = "error";
 			}
-
-			salida.println(datos.toJson(sal));
+			JsonObject json = new JsonObject();
+			json.addProperty("respuesta", sal);
+			salida.println(json);
 		} else if (request.getParameter("method").equals("getProduct")) {
 			String requestProduct = request.getParameter("idProduct");
 			ProductOP_DAO op = new ProductOP_DAO();

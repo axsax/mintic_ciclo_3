@@ -1,28 +1,44 @@
 package Modelo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import Conexion.Conexion;
 
 public class SaleOP_DAO implements SaleDAO {
+	private Connection con = null;
+	private Statement stm = null;
+	private ResultSet rs = null;
 
 	@Override
-	public Long crear(SaleDTO c) {
-		String sql = "INSERT INTO clientes (cedula_cliente, email_cliente, nombre_cliente,telefono_cliente,direccion_cliente) values ('"
-				+ c.getIdentification() + "','" + c.getEmail() + "','" + c.getName() + "','" + c.getPhone_number()
-				+ "','" + c.getAddress() + "');";
+	public String crear(SaleDTO c) {
+		this.con = Conexion.conectar();
+		String generatedKey = "";
+		String sql = "INSERT INTO ventas (cedula_cliente, cedula_usuario, iva_venta, total_venta, valor_venta) values ('"
+				+ c.getCustomer_id() + "','" + c.getUser_id() + "','" + c.getIva() + "','" + c.getTotal_sale() + "','"
+				+ c.getSale_value() + "');";
 		try {
-			this.con = Conexion.conectar();
-			this.stm = this.con.createStatement();
-			this.stm.execute(sql);
-			this.stm.close();
+			PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ps.executeUpdate();
+
+			rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				generatedKey = rs.getString(1);
+			}
+
 			this.con.close();
+			return generatedKey;
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
 			System.out.println(e);
-			return false;
+			return "";
 		}
-		return true;
 	}
 
 	@Override

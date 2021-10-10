@@ -197,13 +197,17 @@
 						var valorVenta = document.getElementById("totalConIva").value;
 						var ivaProducto = document.getElementById("ivaProduct"
 								+ i).value;
-						detalleCompra.push(product, cantidad,
-								valorTotalProducto, valorVenta, ivaProducto);
+						detalleCompra
+								.push(
+										product,
+										cantidad,
+										parseFloat(valorTotalProducto)
+												+ parseFloat((valorTotalProducto * ivaProducto) / 100),
+										valorVenta, ivaProducto);
 						detalleCompraGeneral.push(detalleCompra);
 					}
 
 				}
-				console.log(detalleCompraGeneral);
 
 				var formData = new FormData();
 				formData.append("method", "createSale");
@@ -224,8 +228,19 @@
 					cache : false,
 					contentType : false,
 					processData : false
-				}).done(function(res) {
-						console.log(res);
+				}).done(function(data) {
+					var o = JSON.parse(data);
+					if (o['respuesta']=='exitoso') {
+						var mensaje = 'Venta realizada con exito';
+						var boton = 'success';
+					} else {
+						var boton = 'error';
+						var mensaje = 'No se pudo realizar la venta, algo salio muy mal';
+					}
+					Swal.fire(mensaje, '', boton)
+					if (o['respuesta']=='exitoso') {
+						location.reload();
+					}
 				});
 			}
 		}

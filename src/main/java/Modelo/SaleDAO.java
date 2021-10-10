@@ -3,7 +3,7 @@ package Modelo;
 import java.util.ArrayList;
 
 public interface SaleDAO {
-	Long crear(SaleDTO c);
+	String crear(SaleDTO c);
 
 	Boolean eliminar(SaleDTO c);
 

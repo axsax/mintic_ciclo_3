@@ -52,8 +52,8 @@ if (p.equals("list")) {
 									})
 									.done(
 											function(res) {
-
-												if (res == 'success') {
+												var o = JSON.parse(res);
+												if (o['respuesta'] == 'success') {
 													texto = "Productos cargados exitosamente";
 													time = 1500;
 												} else {
@@ -63,7 +63,7 @@ if (p.equals("list")) {
 												}
 												Swal.fire({
 													position : 'top-end',
-													icon : res,
+													icon : o['respuesta'],
 													title : texto,
 													showConfirmButton : false,
 													timer : time
