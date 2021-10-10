@@ -26,6 +26,8 @@ import Modelo.CustomerDTO;
 import Modelo.CustomerOP_DAO;
 import Modelo.ProductDTO;
 import Modelo.ProductOP_DAO;
+import Modelo.ProviderDTO;
+import Modelo.ProviderOP_DAO;
 import Modelo.UserDTO;
 import Modelo.UserOP_DAO;
 
@@ -64,7 +66,7 @@ public class Product extends HttpServlet {
 		PrintWriter salida = response.getWriter();
 		Gson datos = new Gson();
 		if (request.getParameter("method").equals("createProducts")) {
-			
+
 			Part requestFile = request.getPart("file");
 			String fileName = Paths.get(requestFile.getSubmittedFileName()).getFileName().toString();
 
@@ -109,6 +111,23 @@ public class Product extends HttpServlet {
 			ProductDTO product = new ProductDTO();
 			product = op.consultar(requestProduct);
 			salida.println(datos.toJson(product));
+		} else if (request.getParameter("method").equals("editProduct")) {
+
+			String requestId = request.getParameter("id");
+			String requestName = request.getParameter("name");
+			String requestPriceSale = request.getParameter("priceSale");
+
+			ProductOP_DAO op = new ProductOP_DAO();
+			ProductDTO product = new ProductDTO();
+			product.setCode(Long.parseLong(requestId));
+			product.setProduct_name(requestName);
+			product.setSale_price(Double.parseDouble(requestPriceSale));
+
+			String sal = (op.actualizar(product)) ? "exitoso" : "fallido";
+			salida.println(datos.toJson(sal));
+			// response.sendRedirect("principal/home.jsp?page=customers&action=list&state="
+			// +
+			// sal);
 		}
 	}
 

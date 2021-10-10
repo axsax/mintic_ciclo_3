@@ -68,8 +68,9 @@
 				id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false"> Reportes </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="">Listar</a> <a
-						class="dropdown-item" href="">Crear</a>
+					<a class="dropdown-item"
+						href="home.jsp?page=reports&action=SaleByClient">Ventas por
+						Cliente</a>
 				</div></li>
 			<div class="nav-item form-inline">
 				<div class="btn-group dropleft">

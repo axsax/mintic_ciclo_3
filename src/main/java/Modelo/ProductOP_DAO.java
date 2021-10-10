@@ -31,8 +31,16 @@ public class ProductOP_DAO implements ProductDAO {
 
 	@Override
 	public Boolean actualizar(ProductDTO c) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "UPDATE productos SET nombre_producto = '"+c.getProduct_name()+"', precio_venta = '"+c.getSale_price()+"' WHERE (codigo_producto = '"+c.getCode()+"');";
+		try {
+			this.con = Conexion.conectar();
+			this.stm = this.con.createStatement();
+			this.stm.execute(sql);
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
+		}
+		return true;
 	}
 
 	@Override

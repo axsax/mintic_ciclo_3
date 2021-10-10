@@ -59,4 +59,5 @@ public class Sale_DetailOP_DAO implements Sale_DetailDAO {
 		return null;
 	}
 
+
 }

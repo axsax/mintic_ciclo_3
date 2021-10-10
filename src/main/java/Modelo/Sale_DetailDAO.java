@@ -10,6 +10,7 @@ public interface Sale_DetailDAO {
 	Boolean actualizar(Sale_DetailDTO c);
 
 	ArrayList<Sale_DetailDTO> listar();
+	
 
 	Sale_DetailDTO consultar(String id);
 }
