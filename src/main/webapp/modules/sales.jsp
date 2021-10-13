@@ -239,7 +239,7 @@
 					}
 					Swal.fire(mensaje, '', boton)
 					if (o['respuesta']=='exitoso') {
-						location.reload();
+						
 					}
 				});
 			}

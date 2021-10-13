@@ -53,7 +53,7 @@ table, thead, tr, th {
 	<%
 	} else {
 	%>
-	<h1>UD NO TIENE ACCESO A ESTA PAGINA</h1>
+	<h1>USTED NO TIENE ACCESO A ESTA PAGINA</h1>
 
 	<%
 	}

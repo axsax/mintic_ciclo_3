@@ -47,4 +47,27 @@ public class reportUserSaleOP_DAO implements reportUserSaleDAO {
 		return u;
 	}
 
+	@Override
+	public double totalSales() {
+		String select="select sum(valor_venta) from ventas;";
+		double suma=0.0;
+		try {
+			this.con = Conexion.conectar();
+			this.stm = this.con.createStatement();
+			this.rs = this.stm.executeQuery(select);
+			while (this.rs.next()) {
+				suma=this.rs.getDouble(1);
+			}
+			this.stm.close();
+			this.rs.close();
+			this.con.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+		return suma;
+	}
+	
+
+
 }
