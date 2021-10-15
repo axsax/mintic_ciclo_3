@@ -239,7 +239,8 @@
 					}
 					Swal.fire(mensaje, '', boton)
 					if (o['respuesta']=='exitoso') {
-						
+						let botonRegistrar= document.getElementById('regVenta');
+						botonRegistrar.disabled =true;
 					}
 				});
 			}
@@ -322,6 +323,6 @@
 			onclick="eliminarFila()">Eliminar Fila</button>
 	</div>
 	<button type="button" class="btn btn-success btn-lg btn-block"
-		onclick="registrarVenta()">Registrar venta</button>
+		onclick="registrarVenta()" id="regVenta">Registrar venta</button>
 </div>
 

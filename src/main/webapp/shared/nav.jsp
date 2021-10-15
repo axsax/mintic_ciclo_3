@@ -71,6 +71,10 @@
 					<a class="dropdown-item"
 						href="home.jsp?page=reports&action=SaleByClient">Ventas por
 						Cliente</a>
+						<a class="dropdown-item"
+						href="home.jsp?page=reports&action=listClients">Clientes</a>
+						<a class="dropdown-item"
+						href="home.jsp?page=reports&action=listUsers">Usuarios</a>
 				</div></li>
 			<div class="nav-item form-inline">
 				<div class="btn-group dropleft">
